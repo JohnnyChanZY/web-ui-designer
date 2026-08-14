@@ -6,30 +6,31 @@
     <title>Web UI Design Prompt Generator</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@300;400;700&family=Roboto+Slab:wght@400;500;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@400;500;700&family=Nunito:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Albert+Sans:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app">
-        <!-- Header -->
         <header class="app-header">
             <div class="header-content">
                 <div class="logo">
-                    <span class="logo-icon">🎨</span>
                     <h1>UI Design Prompt Generator</h1>
+                    <span class="subtitle">选择 UI 元素，一键生成设计 prompt</span>
                 </div>
-                <p class="subtitle">选择你想要的 UI 元素，一键生成设计 prompt</p>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="en">English</button>
+                    <button class="lang-btn" data-lang="zh">中文</button>
+                </div>
             </div>
         </header>
 
         <div class="main-layout">
-            <!-- Left Panel: Options -->
+            <!-- Left Panel -->
             <div class="options-panel">
-                <!-- Navigation Style -->
+
+                <!-- Navigation -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🧭</span>
-                        导航栏 Navigation
-                    </h2>
+                    <h2 class="section-title">导航栏 Navigation</h2>
                     <div class="option-grid" data-category="navigation">
                         <button class="option-card" data-value="top-fixed">
                             <div class="card-preview nav-preview-top"></div>
@@ -58,12 +59,9 @@
                     </div>
                 </section>
 
-                <!-- Layout Pattern -->
+                <!-- Layout -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">📐</span>
-                        布局模式 Layout
-                    </h2>
+                    <h2 class="section-title">布局模式 Layout</h2>
                     <div class="option-grid" data-category="layout">
                         <button class="option-card" data-value="single-column">
                             <div class="card-preview layout-single"></div>
@@ -92,14 +90,10 @@
                     </div>
                 </section>
 
-                <!-- Color Palette -->
+                <!-- Colors -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🎨</span>
-                        颜色方案 Colors
-                    </h2>
+                    <h2 class="section-title">颜色方案 Colors</h2>
 
-                    <!-- Preset Palettes -->
                     <div class="preset-palettes">
                         <button class="palette-preset" data-preset="ocean">
                             <div class="palette-colors">
@@ -159,7 +153,7 @@
                                 <span style="background:#ffffff"></span>
                                 <span style="background:#111827"></span>
                             </div>
-                            <span class="palette-name">经典黑白</span>
+                            <span class="palette-name">经典蓝</span>
                         </button>
                         <button class="palette-preset" data-preset="dark">
                             <div class="palette-colors">
@@ -183,86 +177,101 @@
                         </button>
                     </div>
 
-                    <!-- Custom Colors -->
-                    <div class="custom-colors">
-                        <div class="color-input-group">
-                            <label>主色 Primary</label>
-                            <div class="color-input-wrapper">
-                                <input type="color" id="color-primary" value="#3b82f6">
-                                <input type="text" class="color-hex" value="#3b82f6" data-for="color-primary">
+                    <!-- PS-style Color Picker -->
+                    <div class="color-picker-section">
+                        <div class="color-picker-header">
+                            <span class="color-picker-label">自定义调色盘</span>
+                            <div class="color-target-select">
+                                <button class="color-target-btn active" data-target="primary">主色</button>
+                                <button class="color-target-btn" data-target="secondary">辅色</button>
+                                <button class="color-target-btn" data-target="accent">强调</button>
+                                <button class="color-target-btn" data-target="background">背景</button>
+                                <button class="color-target-btn" data-target="text">文字</button>
                             </div>
                         </div>
-                        <div class="color-input-group">
-                            <label>辅色 Secondary</label>
-                            <div class="color-input-wrapper">
-                                <input type="color" id="color-secondary" value="#1e40af">
-                                <input type="text" class="color-hex" value="#1e40af" data-for="color-secondary">
+                        <div class="color-picker-body">
+                            <div class="sv-panel-wrapper" id="svPanelWrapper">
+                                <canvas class="sv-panel" id="svPanel" width="200" height="200"></canvas>
+                                <div class="sv-cursor" id="svCursor"></div>
+                            </div>
+                            <div class="hue-slider-wrapper" id="hueSliderWrapper">
+                                <div class="hue-slider"></div>
+                                <div class="hue-cursor" id="hueCursor"></div>
+                            </div>
+                            <div class="color-info">
+                                <div class="color-preview-row">
+                                    <div class="color-preview-swatch" id="pickerSwatch"></div>
+                                    <div>
+                                        <div class="color-preview-label" id="pickerTargetLabel">主色 Primary</div>
+                                    </div>
+                                </div>
+                                <div class="color-hex-input-group">
+                                    <span class="color-hex-label">#</span>
+                                    <input type="text" class="color-hex-field" id="pickerHex" maxlength="6" value="6366f1">
+                                </div>
+                                <div class="color-sliders">
+                                    <div class="color-slider-row">
+                                        <span class="color-slider-label">R</span>
+                                        <input type="range" class="color-slider" id="sliderR" min="0" max="255" value="99">
+                                        <span class="color-slider-value" id="valR">99</span>
+                                    </div>
+                                    <div class="color-slider-row">
+                                        <span class="color-slider-label">G</span>
+                                        <input type="range" class="color-slider" id="sliderG" min="0" max="255" value="102">
+                                        <span class="color-slider-value" id="valG">102</span>
+                                    </div>
+                                    <div class="color-slider-row">
+                                        <span class="color-slider-label">B</span>
+                                        <input type="range" class="color-slider" id="sliderB" min="0" max="255" value="241">
+                                        <span class="color-slider-value" id="valB">241</span>
+                                    </div>
+                                </div>
+                                <button class="color-apply-btn" id="applyColor">应用到当前目标</button>
                             </div>
                         </div>
-                        <div class="color-input-group">
-                            <label>强调色 Accent</label>
-                            <div class="color-input-wrapper">
-                                <input type="color" id="color-accent" value="#93c5fd">
-                                <input type="text" class="color-hex" value="#93c5fd" data-for="color-accent">
-                            </div>
+                    </div>
+
+                    <!-- Current Colors -->
+                    <div class="current-colors" id="currentColors">
+                        <div class="current-color-item">
+                            <div class="current-color-swatch" style="background:#3b82f6" data-key="primary"></div>
+                            <div class="current-color-name">主色</div>
+                            <div class="current-color-hex" id="hex-primary">#3b82f6</div>
                         </div>
-                        <div class="color-input-group">
-                            <label>背景色 Background</label>
-                            <div class="color-input-wrapper">
-                                <input type="color" id="color-bg" value="#ffffff">
-                                <input type="text" class="color-hex" value="#ffffff" data-for="color-bg">
-                            </div>
+                        <div class="current-color-item">
+                            <div class="current-color-swatch" style="background:#1e40af" data-key="secondary"></div>
+                            <div class="current-color-name">辅色</div>
+                            <div class="current-color-hex" id="hex-secondary">#1e40af</div>
                         </div>
-                        <div class="color-input-group">
-                            <label>文字色 Text</label>
-                            <div class="color-input-wrapper">
-                                <input type="color" id="color-text" value="#111827">
-                                <input type="text" class="color-hex" value="#111827" data-for="color-text">
-                            </div>
+                        <div class="current-color-item">
+                            <div class="current-color-swatch" style="background:#93c5fd" data-key="accent"></div>
+                            <div class="current-color-name">强调</div>
+                            <div class="current-color-hex" id="hex-accent">#93c5fd</div>
+                        </div>
+                        <div class="current-color-item">
+                            <div class="current-color-swatch" style="background:#ffffff" data-key="background"></div>
+                            <div class="current-color-name">背景</div>
+                            <div class="current-color-hex" id="hex-background">#ffffff</div>
+                        </div>
+                        <div class="current-color-item">
+                            <div class="current-color-swatch" style="background:#111827" data-key="text"></div>
+                            <div class="current-color-name">文字</div>
+                            <div class="current-color-hex" id="hex-text">#111827</div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Typography -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🔤</span>
-                        字体风格 Typography
-                    </h2>
-                    <div class="option-grid cols-3" data-category="typography">
-                        <button class="option-card" data-value="modern-sans">
-                            <span style="font-family:'Inter',sans-serif;font-weight:600">Aa</span>
-                            <span>现代无衬线</span>
-                        </button>
-                        <button class="option-card" data-value="classic-serif">
-                            <span style="font-family:Georgia,serif;font-weight:600">Aa</span>
-                            <span>经典衬线</span>
-                        </button>
-                        <button class="option-card" data-value="mono-tech">
-                            <span style="font-family:monospace;font-weight:600">Aa</span>
-                            <span>科技等宽</span>
-                        </button>
-                        <button class="option-card" data-value="rounded-friendly">
-                            <span style="font-family:'Inter',sans-serif;font-weight:600;border-radius:8px">Aa</span>
-                            <span>圆润友好</span>
-                        </button>
-                        <button class="option-card" data-value="bold-impact">
-                            <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:1.4em">Aa</span>
-                            <span>粗体醒目</span>
-                        </button>
-                        <button class="option-card" data-value="elegant-thin">
-                            <span style="font-family:'Inter',sans-serif;font-weight:200;font-size:1.3em">Aa</span>
-                            <span>优雅细体</span>
-                        </button>
+                    <h2 class="section-title">字体选择 Typography</h2>
+                    <div class="font-grid" id="fontGrid">
+                        <!-- Fonts are injected by JS -->
                     </div>
                 </section>
 
                 <!-- Visual Style -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">✨</span>
-                        视觉风格 Visual Style
-                    </h2>
+                    <h2 class="section-title">视觉风格 Visual Style</h2>
                     <div class="option-grid cols-3" data-category="visual-style">
                         <button class="option-card" data-value="minimal-clean">
                             <div class="card-preview style-minimal"></div>
@@ -291,12 +300,9 @@
                     </div>
                 </section>
 
-                <!-- Component Style -->
+                <!-- Components -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">🧩</span>
-                        组件风格 Components
-                    </h2>
+                    <h2 class="section-title">组件风格 Components</h2>
                     <div class="component-subsection">
                         <h3>按钮 Buttons</h3>
                         <div class="option-grid cols-4" data-category="button-style">
@@ -341,71 +347,62 @@
                     </div>
                 </section>
 
-                <!-- Additional Features -->
+                <!-- Features -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">⚡</span>
-                        附加特性 Features
-                    </h2>
+                    <h2 class="section-title">附加特性 Features</h2>
                     <div class="feature-toggles">
                         <label class="toggle-item">
                             <input type="checkbox" id="feat-dark-mode">
                             <span class="toggle-slider"></span>
-                            <span>暗色模式 Dark Mode</span>
+                            <span>暗色模式</span>
                         </label>
                         <label class="toggle-item">
                             <input type="checkbox" id="feat-animations">
                             <span class="toggle-slider"></span>
-                            <span>微动效 Micro Animations</span>
+                            <span>微动效</span>
                         </label>
                         <label class="toggle-item">
-                            <input type="checkbox" id="feat-responsive">
-                            <span class="toggle-slider" checked></span>
-                            <span>响应式 Responsive</span>
+                            <input type="checkbox" id="feat-responsive" checked>
+                            <span class="toggle-slider"></span>
+                            <span>响应式</span>
                         </label>
                         <label class="toggle-item">
                             <input type="checkbox" id="feat-gradients">
                             <span class="toggle-slider"></span>
-                            <span>渐变效果 Gradients</span>
+                            <span>渐变效果</span>
                         </label>
                         <label class="toggle-item">
                             <input type="checkbox" id="feat-shadows">
                             <span class="toggle-slider"></span>
-                            <span>阴影层次 Shadows</span>
+                            <span>阴影层次</span>
                         </label>
                         <label class="toggle-item">
                             <input type="checkbox" id="feat-icons">
                             <span class="toggle-slider"></span>
-                            <span>图标系统 Icon System</span>
+                            <span>图标系统</span>
                         </label>
                     </div>
                 </section>
 
                 <!-- Extra Notes -->
                 <section class="option-section">
-                    <h2 class="section-title">
-                        <span class="section-icon">📝</span>
-                        补充描述 Extra Notes
-                    </h2>
+                    <h2 class="section-title">补充描述 Extra Notes</h2>
                     <textarea id="extra-notes" placeholder="输入任何额外的设计要求，例如：网站用于展示摄影作品，需要大图展示区域..."></textarea>
                 </section>
             </div>
 
-            <!-- Right Panel: Prompt Output -->
+            <!-- Right Panel -->
             <div class="prompt-panel">
                 <div class="prompt-panel-inner">
                     <div class="prompt-header">
-                        <h2>📋 生成的 Prompt</h2>
+                        <h2>生成的 Prompt</h2>
                         <div class="prompt-actions">
-                            <button id="btn-reset" class="btn-action btn-reset" title="重置所有选择">
-                                🔄 重置
-                            </button>
-                            <button id="btn-copy" class="btn-action btn-copy" title="复制到剪贴板">
-                                📋 复制
-                            </button>
+                            <button id="btn-reset" class="btn-action btn-reset">重置</button>
+                            <button id="btn-export" class="btn-action btn-export">导出 MD</button>
+                            <button id="btn-copy" class="btn-action btn-copy">复制</button>
                         </div>
                     </div>
-                    <div class="prompt-preview-label">预览标签 Preview Tag</div>
+                    <div class="prompt-preview-label">已选配置</div>
                     <div id="prompt-preview" class="prompt-preview"></div>
                     <div class="prompt-content-wrapper">
                         <pre id="prompt-output" class="prompt-output"></pre>
@@ -415,21 +412,11 @@
                         <span id="stat-selections">0 项选择</span>
                     </div>
 
-                    <!-- Mini Live Preview -->
-                    <div class="mini-preview-section">
-                        <h3>🖥️ 效果预览</h3>
-                        <div id="mini-preview" class="mini-preview">
-                            <div class="mini-nav" id="mini-nav">
-                                <div class="mini-nav-brand"></div>
-                                <div class="mini-nav-links">
-                                    <span></span><span></span><span></span>
-                                </div>
-                            </div>
-                            <div class="mini-body" id="mini-body">
-                                <div class="mini-card" id="mini-card-1"></div>
-                                <div class="mini-card" id="mini-card-2"></div>
-                                <div class="mini-card" id="mini-card-3"></div>
-                            </div>
+                    <!-- Live Preview -->
+                    <div class="preview-section">
+                        <h3>效果预览</h3>
+                        <div id="live-preview" class="live-preview">
+                            <!-- Preview content injected by JS -->
                         </div>
                     </div>
                 </div>
