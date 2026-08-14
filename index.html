@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web UI Design Prompt Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎨</span>
+                    <h1>UI Design Prompt Generator</h1>
+                </div>
+                <p class="subtitle">选择你想要的 UI 元素，一键生成设计 prompt</p>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left Panel: Options -->
+            <div class="options-panel">
+                <!-- Navigation Style -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🧭</span>
+                        导航栏 Navigation
+                    </h2>
+                    <div class="option-grid" data-category="navigation">
+                        <button class="option-card" data-value="top-fixed">
+                            <div class="card-preview nav-preview-top"></div>
+                            <span>顶部固定导航</span>
+                        </button>
+                        <button class="option-card" data-value="sidebar">
+                            <div class="card-preview nav-preview-sidebar"></div>
+                            <span>侧边栏导航</span>
+                        </button>
+                        <button class="option-card" data-value="hamburger">
+                            <div class="card-preview nav-preview-hamburger"></div>
+                            <span>汉堡菜单</span>
+                        </button>
+                        <button class="option-card" data-value="mega-menu">
+                            <div class="card-preview nav-preview-mega"></div>
+                            <span>超级菜单</span>
+                        </button>
+                        <button class="option-card" data-value="tab-bar">
+                            <div class="card-preview nav-preview-tab"></div>
+                            <span>标签栏</span>
+                        </button>
+                        <button class="option-card" data-value="floating">
+                            <div class="card-preview nav-preview-float"></div>
+                            <span>浮动导航</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Layout Pattern -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📐</span>
+                        布局模式 Layout
+                    </h2>
+                    <div class="option-grid" data-category="layout">
+                        <button class="option-card" data-value="single-column">
+                            <div class="card-preview layout-single"></div>
+                            <span>单列布局</span>
+                        </button>
+                        <button class="option-card" data-value="two-column">
+                            <div class="card-preview layout-two"></div>
+                            <span>双栏布局</span>
+                        </button>
+                        <button class="option-card" data-value="grid">
+                            <div class="card-preview layout-grid"></div>
+                            <span>网格布局</span>
+                        </button>
+                        <button class="option-card" data-value="masonry">
+                            <div class="card-preview layout-masonry"></div>
+                            <span>瀑布流</span>
+                        </button>
+                        <button class="option-card" data-value="dashboard">
+                            <div class="card-preview layout-dashboard"></div>
+                            <span>仪表盘</span>
+                        </button>
+                        <button class="option-card" data-value="landing">
+                            <div class="card-preview layout-landing"></div>
+                            <span>着陆页</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Color Palette -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎨</span>
+                        颜色方案 Colors
+                    </h2>
+
+                    <!-- Preset Palettes -->
+                    <div class="preset-palettes">
+                        <button class="palette-preset" data-preset="ocean">
+                            <div class="palette-colors">
+                                <span style="background:#0ea5e9"></span>
+                                <span style="background:#0284c7"></span>
+                                <span style="background:#7dd3fc"></span>
+                                <span style="background:#f0f9ff"></span>
+                                <span style="background:#0f172a"></span>
+                            </div>
+                            <span class="palette-name">海洋蓝</span>
+                        </button>
+                        <button class="palette-preset" data-preset="forest">
+                            <div class="palette-colors">
+                                <span style="background:#22c55e"></span>
+                                <span style="background:#16a34a"></span>
+                                <span style="background:#86efac"></span>
+                                <span style="background:#f0fdf4"></span>
+                                <span style="background:#14532d"></span>
+                            </div>
+                            <span class="palette-name">森林绿</span>
+                        </button>
+                        <button class="palette-preset" data-preset="sunset">
+                            <div class="palette-colors">
+                                <span style="background:#f97316"></span>
+                                <span style="background:#ea580c"></span>
+                                <span style="background:#fdba74"></span>
+                                <span style="background:#fff7ed"></span>
+                                <span style="background:#431407"></span>
+                            </div>
+                            <span class="palette-name">日落橙</span>
+                        </button>
+                        <button class="palette-preset" data-preset="lavender">
+                            <div class="palette-colors">
+                                <span style="background:#a855f7"></span>
+                                <span style="background:#9333ea"></span>
+                                <span style="background:#d8b4fe"></span>
+                                <span style="background:#faf5ff"></span>
+                                <span style="background:#3b0764"></span>
+                            </div>
+                            <span class="palette-name">薰衣草</span>
+                        </button>
+                        <button class="palette-preset" data-preset="rose">
+                            <div class="palette-colors">
+                                <span style="background:#f43f5e"></span>
+                                <span style="background:#e11d48"></span>
+                                <span style="background:#fda4af"></span>
+                                <span style="background:#fff1f2"></span>
+                                <span style="background:#881337"></span>
+                            </div>
+                            <span class="palette-name">玫瑰红</span>
+                        </button>
+                        <button class="palette-preset" data-preset="monochrome">
+                            <div class="palette-colors">
+                                <span style="background:#3b82f6"></span>
+                                <span style="background:#1e40af"></span>
+                                <span style="background:#93c5fd"></span>
+                                <span style="background:#ffffff"></span>
+                                <span style="background:#111827"></span>
+                            </div>
+                            <span class="palette-name">经典黑白</span>
+                        </button>
+                        <button class="palette-preset" data-preset="dark">
+                            <div class="palette-colors">
+                                <span style="background:#6366f1"></span>
+                                <span style="background:#4f46e5"></span>
+                                <span style="background:#a5b4fc"></span>
+                                <span style="background:#0f172a"></span>
+                                <span style="background:#e2e8f0"></span>
+                            </div>
+                            <span class="palette-name">暗夜紫</span>
+                        </button>
+                        <button class="palette-preset" data-preset="warm">
+                            <div class="palette-colors">
+                                <span style="background:#eab308"></span>
+                                <span style="background:#ca8a04"></span>
+                                <span style="background:#fde68a"></span>
+                                <span style="background:#fefce8"></span>
+                                <span style="background:#422006"></span>
+                            </div>
+                            <span class="palette-name">暖阳金</span>
+                        </button>
+                    </div>
+
+                    <!-- Custom Colors -->
+                    <div class="custom-colors">
+                        <div class="color-input-group">
+                            <label>主色 Primary</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="color-primary" value="#3b82f6">
+                                <input type="text" class="color-hex" value="#3b82f6" data-for="color-primary">
+                            </div>
+                        </div>
+                        <div class="color-input-group">
+                            <label>辅色 Secondary</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="color-secondary" value="#1e40af">
+                                <input type="text" class="color-hex" value="#1e40af" data-for="color-secondary">
+                            </div>
+                        </div>
+                        <div class="color-input-group">
+                            <label>强调色 Accent</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="color-accent" value="#93c5fd">
+                                <input type="text" class="color-hex" value="#93c5fd" data-for="color-accent">
+                            </div>
+                        </div>
+                        <div class="color-input-group">
+                            <label>背景色 Background</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="color-bg" value="#ffffff">
+                                <input type="text" class="color-hex" value="#ffffff" data-for="color-bg">
+                            </div>
+                        </div>
+                        <div class="color-input-group">
+                            <label>文字色 Text</label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="color-text" value="#111827">
+                                <input type="text" class="color-hex" value="#111827" data-for="color-text">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Typography -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔤</span>
+                        字体风格 Typography
+                    </h2>
+                    <div class="option-grid cols-3" data-category="typography">
+                        <button class="option-card" data-value="modern-sans">
+                            <span style="font-family:'Inter',sans-serif;font-weight:600">Aa</span>
+                            <span>现代无衬线</span>
+                        </button>
+                        <button class="option-card" data-value="classic-serif">
+                            <span style="font-family:Georgia,serif;font-weight:600">Aa</span>
+                            <span>经典衬线</span>
+                        </button>
+                        <button class="option-card" data-value="mono-tech">
+                            <span style="font-family:monospace;font-weight:600">Aa</span>
+                            <span>科技等宽</span>
+                        </button>
+                        <button class="option-card" data-value="rounded-friendly">
+                            <span style="font-family:'Inter',sans-serif;font-weight:600;border-radius:8px">Aa</span>
+                            <span>圆润友好</span>
+                        </button>
+                        <button class="option-card" data-value="bold-impact">
+                            <span style="font-family:'Inter',sans-serif;font-weight:900;font-size:1.4em">Aa</span>
+                            <span>粗体醒目</span>
+                        </button>
+                        <button class="option-card" data-value="elegant-thin">
+                            <span style="font-family:'Inter',sans-serif;font-weight:200;font-size:1.3em">Aa</span>
+                            <span>优雅细体</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Visual Style -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">✨</span>
+                        视觉风格 Visual Style
+                    </h2>
+                    <div class="option-grid cols-3" data-category="visual-style">
+                        <button class="option-card" data-value="minimal-clean">
+                            <div class="card-preview style-minimal"></div>
+                            <span>极简清爽</span>
+                        </button>
+                        <button class="option-card" data-value="glassmorphism">
+                            <div class="card-preview style-glass"></div>
+                            <span>毛玻璃</span>
+                        </button>
+                        <button class="option-card" data-value="neumorphism">
+                            <div class="card-preview style-neu"></div>
+                            <span>新拟态</span>
+                        </button>
+                        <button class="option-card" data-value="brutalist">
+                            <div class="card-preview style-brutal"></div>
+                            <span>粗野主义</span>
+                        </button>
+                        <button class="option-card" data-value="gradient-rich">
+                            <div class="card-preview style-gradient"></div>
+                            <span>渐变丰富</span>
+                        </button>
+                        <button class="option-card" data-value="flat-design">
+                            <div class="card-preview style-flat"></div>
+                            <span>扁平化</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Component Style -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🧩</span>
+                        组件风格 Components
+                    </h2>
+                    <div class="component-subsection">
+                        <h3>按钮 Buttons</h3>
+                        <div class="option-grid cols-4" data-category="button-style">
+                            <button class="option-card" data-value="rounded">
+                                <div class="btn-preview btn-rounded"></div>
+                                <span>圆角</span>
+                            </button>
+                            <button class="option-card" data-value="pill">
+                                <div class="btn-preview btn-pill"></div>
+                                <span>胶囊</span>
+                            </button>
+                            <button class="option-card" data-value="sharp">
+                                <div class="btn-preview btn-sharp"></div>
+                                <span>直角</span>
+                            </button>
+                            <button class="option-card" data-value="ghost">
+                                <div class="btn-preview btn-ghost"></div>
+                                <span>幽灵</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="component-subsection">
+                        <h3>卡片 Cards</h3>
+                        <div class="option-grid cols-4" data-category="card-style">
+                            <button class="option-card" data-value="elevated">
+                                <div class="card-preview-sm card-elevated"></div>
+                                <span>阴影</span>
+                            </button>
+                            <button class="option-card" data-value="bordered">
+                                <div class="card-preview-sm card-bordered"></div>
+                                <span>边框</span>
+                            </button>
+                            <button class="option-card" data-value="flat-card">
+                                <div class="card-preview-sm card-flat"></div>
+                                <span>扁平</span>
+                            </button>
+                            <button class="option-card" data-value="glass-card">
+                                <div class="card-preview-sm card-glass"></div>
+                                <span>毛玻璃</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Additional Features -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">⚡</span>
+                        附加特性 Features
+                    </h2>
+                    <div class="feature-toggles">
+                        <label class="toggle-item">
+                            <input type="checkbox" id="feat-dark-mode">
+                            <span class="toggle-slider"></span>
+                            <span>暗色模式 Dark Mode</span>
+                        </label>
+                        <label class="toggle-item">
+                            <input type="checkbox" id="feat-animations">
+                            <span class="toggle-slider"></span>
+                            <span>微动效 Micro Animations</span>
+                        </label>
+                        <label class="toggle-item">
+                            <input type="checkbox" id="feat-responsive">
+                            <span class="toggle-slider" checked></span>
+                            <span>响应式 Responsive</span>
+                        </label>
+                        <label class="toggle-item">
+                            <input type="checkbox" id="feat-gradients">
+                            <span class="toggle-slider"></span>
+                            <span>渐变效果 Gradients</span>
+                        </label>
+                        <label class="toggle-item">
+                            <input type="checkbox" id="feat-shadows">
+                            <span class="toggle-slider"></span>
+                            <span>阴影层次 Shadows</span>
+                        </label>
+                        <label class="toggle-item">
+                            <input type="checkbox" id="feat-icons">
+                            <span class="toggle-slider"></span>
+                            <span>图标系统 Icon System</span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Extra Notes -->
+                <section class="option-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📝</span>
+                        补充描述 Extra Notes
+                    </h2>
+                    <textarea id="extra-notes" placeholder="输入任何额外的设计要求，例如：网站用于展示摄影作品，需要大图展示区域..."></textarea>
+                </section>
+            </div>
+
+            <!-- Right Panel: Prompt Output -->
+            <div class="prompt-panel">
+                <div class="prompt-panel-inner">
+                    <div class="prompt-header">
+                        <h2>📋 生成的 Prompt</h2>
+                        <div class="prompt-actions">
+                            <button id="btn-reset" class="btn-action btn-reset" title="重置所有选择">
+                                🔄 重置
+                            </button>
+                            <button id="btn-copy" class="btn-action btn-copy" title="复制到剪贴板">
+                                📋 复制
+                            </button>
+                        </div>
+                    </div>
+                    <div class="prompt-preview-label">预览标签 Preview Tag</div>
+                    <div id="prompt-preview" class="prompt-preview"></div>
+                    <div class="prompt-content-wrapper">
+                        <pre id="prompt-output" class="prompt-output"></pre>
+                    </div>
+                    <div class="prompt-stats">
+                        <span id="stat-chars">0 字符</span>
+                        <span id="stat-selections">0 项选择</span>
+                    </div>
+
+                    <!-- Mini Live Preview -->
+                    <div class="mini-preview-section">
+                        <h3>🖥️ 效果预览</h3>
+                        <div id="mini-preview" class="mini-preview">
+                            <div class="mini-nav" id="mini-nav">
+                                <div class="mini-nav-brand"></div>
+                                <div class="mini-nav-links">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="mini-body" id="mini-body">
+                                <div class="mini-card" id="mini-card-1"></div>
+                                <div class="mini-card" id="mini-card-2"></div>
+                                <div class="mini-card" id="mini-card-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
